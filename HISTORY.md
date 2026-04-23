@@ -1,38 +1,30 @@
-# 1.1.3-xypriss / 2026 (Nehonix fork)
+# 2.0.1 / 2026 (Nehonix fork)
 
 - Full rewrite in strict TypeScript
-- Internalized for the XyPriss framework ecosystem
-- Added Nehonix Team as maintainer/contributor
+- Improved input validation with descriptive error messages (invalid field name is now included in the `TypeError` message)
+- Empty-array guard on `field` argument
+- `res` validation checks for `getHeader`/`setHeader` duck-typing instead of a plain falsy check
+- `parse()` rewritten with explicit character-code constants for readability
 
-# 1.1.2 / 2017-09-23
+  # 1.1.2 / 2017-09-23
 
 - perf: improve header token parsing speed
 
-# 1.1.1 / 2017-03-20
+  # 1.1.1 / 2017-03-20
 
 - perf: hoist regular expression
 
-# 1.1.0 / 2015-09-29
+  # 1.1.0 / 2015-09-29
 
 - Only accept valid field names in the `field` argument
   - Ensures the resulting string is a valid HTTP header value
 
-# 1.0.1 / 2015-07-08
+  # 1.0.1 / 2015-07-08
 
 - Fix setting empty header from empty `field`
 - perf: enable strict mode
 - perf: remove argument reassignments
 
-# 1.0.0 / 2014-08-10
-
-- Accept valid `Vary` header string as `field`
-- Add `vary.append` for low-level string manipulation
-- Move to `jshttp` organization
-
-# 0.1.0 / 2014-06-05
-
-- Support array of fields to set
-
-# 0.0.0 / 2014-06-04
+  # 1.0.0 / 2014-08-10
 
 - Initial release
