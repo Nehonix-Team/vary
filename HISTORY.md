@@ -1,4 +1,4 @@
-# 2.0.1 / 2026 (Nehonix fork)
+# 1.1.3-xypriss / 2026 (Nehonix fork)
 
 - Full rewrite in strict TypeScript
 - Improved input validation with descriptive error messages (invalid field name is now included in the `TypeError` message)
