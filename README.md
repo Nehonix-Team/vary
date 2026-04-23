@@ -1,101 +1,60 @@
-# vary
+# XyPriss Vary Manipulation (xypriss-vary)
 
-[![NPM Version][npm-version-image]][npm-url]
-[![NPM Downloads][npm-downloads-image]][npm-url]
-[![Node.js Version][node-version-image]][node-version-url]
-[![Build Status][ci-image]][ci-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
+> [!NOTE]
+> **Internalized Fork**: This module is a strictly typed TypeScript port of the original `vary` library. It has been internalized into the XyPriss ecosystem to reduce external dependency surfaces and ensure architectural consistency within XyPriss framework plugins.
 
-Manipulate the HTTP Vary header
+## Overview
+
+The `xypriss-vary` module provides utilities to manipulate the HTTP `Vary` header of a response. It ensures that header fields are appended correctly and that the `*` (asterisk) value is handled according to RFC standards.
 
 ## Installation
 
-This is a [Node.js](https://nodejs.org/en/) module available through the
-[npm registry](https://www.npmjs.com/). Installation is done using the
-[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally): 
+This module is distributed and managed via the XyPriss Package Manager.
 
 ```sh
-$ npm install vary
+xfpm install xypriss-vary
 ```
 
-## API
+## Usage
 
-<!-- eslint-disable no-unused-vars -->
+Integrate the manipulation logic using ESM syntax.
 
-```js
-var vary = require('vary')
+```typescript
+import http from "http";
+import vary from "xypriss-vary";
+
+http
+  .createServer((req, res) => {
+    // Mark that the response varies based on the User-Agent header
+    vary(res, "User-Agent");
+
+    res.statusCode = 200;
+    res.setHeader("Content-Type", "text/plain");
+    res.end("Operational");
+  })
+  .listen(3000);
 ```
 
-### vary(res, field)
+### Low-level Append
 
-Adds the given header `field` to the `Vary` response header of `res`.
-This can be a string of a single field, a string of a valid `Vary`
-header, or an array of multiple fields.
+You can also use the `append` function to manipulate header strings directly.
 
-This will append the header if not already listed, otherwise leaves
-it listed in the current location.
+```typescript
+import { append } from "xypriss-vary";
 
-<!-- eslint-disable no-undef -->
-
-```js
-// Append "Origin" to the Vary header of the response
-vary(res, 'Origin')
+const header = "Accept, User-Agent";
+const newVal = append(header, "Origin");
+// newVal -> "Accept, User-Agent, Origin"
 ```
 
-### vary.append(header, field)
+## Technical Implementation
 
-Adds the given header `field` to the `Vary` response header string `header`.
-This can be a string of a single field, a string of a valid `Vary` header,
-or an array of multiple fields.
+- **Strict TypeScript Port**: Built from the ground up utilizing native TypeScript for optimal IDE support and compile-time safety.
+- **Deterministic Token Parsing**: Implements a highly optimized, single-pass parser for `Vary` header tokens.
+- **RFC Compliance**: Strictly follows field-name validation as per RFC 7230.
 
-This will append the header if not already listed, otherwise leaves
-it listed in the current location. The new header string is returned.
+## License Declarations
 
-<!-- eslint-disable no-undef -->
-
-```js
-// Get header string appending "Origin" to "Accept, User-Agent"
-vary.append('Accept, User-Agent', 'Origin')
-```
-
-## Examples
-
-### Updating the Vary header when content is based on it
-
-```js
-var http = require('http')
-var vary = require('vary')
-
-http.createServer(function onRequest (req, res) {
-  // about to user-agent sniff
-  vary(res, 'User-Agent')
-
-  var ua = req.headers['user-agent'] || ''
-  var isMobile = /mobi|android|touch|mini/i.test(ua)
-
-  // serve site, depending on isMobile
-  res.setHeader('Content-Type', 'text/html')
-  res.end('You are (probably) ' + (isMobile ? '' : 'not ') + 'a mobile user')
-})
-```
-
-## Testing
-
-```sh
-$ npm test
-```
-
-## License
-
-[MIT](LICENSE)
-
-
-[ci-image]: https://badgen.net/github/checks/jshttp/vary/master?label=ci
-[ci-url]: https://github.com/jshttp/vary/actions/workflows/ci.yml
-[coveralls-image]: https://badgen.net/coveralls/c/github/jshttp/vary/master
-[coveralls-url]: https://coveralls.io/r/jshttp/vary?branch=master
-[node-version-image]: https://badgen.net/npm/node/vary
-[node-version-url]: https://nodejs.org/en/download
-[npm-downloads-image]: https://badgen.net/npm/dm/vary
-[npm-url]: https://npmjs.org/package/vary
-[npm-version-image]: https://badgen.net/npm/v/vary
+Copyright © 2014-2017 Douglas Christopher Wilson  
+Copyright © 2026 Nehonix Team  
+Released under the MIT License.

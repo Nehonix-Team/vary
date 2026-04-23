@@ -1,39 +1,38 @@
-1.1.2 / 2017-09-23
-==================
+# 1.1.3-xypriss / 2026 (Nehonix fork)
 
-  * perf: improve header token parsing speed
+- Full rewrite in strict TypeScript
+- Internalized for the XyPriss framework ecosystem
+- Added Nehonix Team as maintainer/contributor
 
-1.1.1 / 2017-03-20
-==================
+# 1.1.2 / 2017-09-23
 
-  * perf: hoist regular expression
+- perf: improve header token parsing speed
 
-1.1.0 / 2015-09-29
-==================
+# 1.1.1 / 2017-03-20
 
-  * Only accept valid field names in the `field` argument
-    - Ensures the resulting string is a valid HTTP header value
+- perf: hoist regular expression
 
-1.0.1 / 2015-07-08
-==================
+# 1.1.0 / 2015-09-29
 
-  * Fix setting empty header from empty `field`
-  * perf: enable strict mode
-  * perf: remove argument reassignments
+- Only accept valid field names in the `field` argument
+  - Ensures the resulting string is a valid HTTP header value
 
-1.0.0 / 2014-08-10
-==================
+# 1.0.1 / 2015-07-08
 
-  * Accept valid `Vary` header string as `field`
-  * Add `vary.append` for low-level string manipulation
-  * Move to `jshttp` organization
+- Fix setting empty header from empty `field`
+- perf: enable strict mode
+- perf: remove argument reassignments
 
-0.1.0 / 2014-06-05
-==================
+# 1.0.0 / 2014-08-10
 
-  * Support array of fields to set
+- Accept valid `Vary` header string as `field`
+- Add `vary.append` for low-level string manipulation
+- Move to `jshttp` organization
 
-0.0.0 / 2014-06-04
-==================
+# 0.1.0 / 2014-06-05
 
-  * Initial release
+- Support array of fields to set
+
+# 0.0.0 / 2014-06-04
+
+- Initial release
